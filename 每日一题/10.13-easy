@@ -1,0 +1,18 @@
+//直接用递归解法，输入44时超出时间限制
+int climbStairs(int n) {
+        if(n==1) return 1;
+        if(n==2) return 2;
+        return climbStairs(n-1)+climbStairs(n-2);
+}
+
+//改进：动态规划 f(n)=f(n-1)+f(n-2) 使用斐波那契数列
+int climbStairs(int n) {
+        //f(n)=f(n-1)+f(n-2)
+        int a=0,b=1,c=0;
+        while(n--){
+            c=a+b;
+            a=b;
+            b=c;
+        }
+        return c;
+}
