@@ -1,0 +1,46 @@
+
+//版本一：使用map存储键值对，但是耗时过长776 ms 内存消耗142.5 MB 
+int lengthOfLongestSubstring(string s) {
+        int size=s.size();
+        int length=0;
+        int i=0;
+        while(i<size){
+            map<char, int> charMap;
+            int j;
+            for(j=i;j<size;j++){
+                if(charMap.find(s[j])==charMap.end()){//判断map中某个键是否存在
+                    charMap[s[j]]=j;//如果map中该键不存在则记录其下标
+                    //cout<<"---1---"<<j<<endl;
+                }
+                else{
+                	//cout<<"---2---"<<endl;
+                    if(charMap.size()>length)//如果现有子串长度大于已有长度则更新
+                        length=charMap.size();
+                    if(j<size-1&&charMap.find(s[j+1])!=charMap.end())
+                        //若后面还有字符没有统计并且后一个字符存在于已有map的键中
+                        i=charMap[s[j+1]]+1;
+                    else i++;
+                    break;
+                }
+            }
+            if(length<charMap.size()) 
+            	length=charMap.size();
+            if(j==size)//已经遍历到末尾则退出 
+            	break;
+        }
+        return length;
+}
+//参考大神的解法：
+int lengthOfLongestSubstring(string s) {
+	int left=0;//滑动窗口的左边界
+	int hashMap[256]={0};//256个字符，初始化每个字符所在位置为0 
+	int count=0;//计数，即要返回的结果 
+	for(int i=0;i<s.size();i++){
+		if(hashMap[s[i]]==0||hashMap[s[i]]<left)//如果该字符未被标记，或者被标记过但不在滑动窗口内 
+			count=max(count, i-left+1);
+		else
+			left=hashMap[s[i]];//滑动窗口内有该字符，左边界更新为该字符下标+1 
+		hashMap[s[i]]=i+1;//记录该字符，表示其已标记过，值为下标+1 
+	} 
+	return count; 
+} 
