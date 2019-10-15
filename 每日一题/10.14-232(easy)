@@ -1,105 +1,53 @@
 class MyQueue {
-2
 public:
-3
     /** Initialize your data structure here. */
-4
     stack<int> q1,q2;//q1用于进栈，q2用于出栈
-5
     MyQueue() {
-6
         
-7
     }
-8
     
-9
     /** Push element x to the back of queue. */
-10
     void push(int x) {
-11
         q1.push(x);
-12
     }
-13
     void remove(){//如果q1中还有元素，将其转移到q2
-14
         while(!q1.empty()){
-15
             q2.push(q1.top());
-16
             q1.pop();
-17
         }
-18
     }
-19
     /** Removes the element from in front of queue and returns that element. */
-20
     int pop() {
-21
         int x;
-22
         if(q2.empty())
-23
             remove();
-24
         x=q2.top();
-25
         q2.pop();
-26
         return x;
-27
     }
-28
     
-29
     /** Get the front element. */
-30
     int peek() {
-31
         int x;
-32
         if(q2.empty())
-33
             remove();
-34
         x=q2.top();
-35
         return x;
-36
     }
-37
     
-38
     /** Returns whether the queue is empty. */
-39
     bool empty() {
-40
         if(q2.empty()&&q1.empty())
-41
             return true;
-42
         return false;
-43
     }
-44
 };
-45
-​
-46
+
 /**
-47
  * Your MyQueue object will be instantiated and called as such:
-48
  * MyQueue* obj = new MyQueue();
-49
  * obj->push(x);
-50
  * int param_2 = obj->pop();
-51
  * int param_3 = obj->peek();
-52
  * bool param_4 = obj->empty();
-53
  */
