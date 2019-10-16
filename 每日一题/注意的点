@@ -1,0 +1,6 @@
+----10.16----
+bool xxx(string s){
+  string str;
+  for(int i=0;i<s.size();i++)
+    str[i]=s[i];//会报错，因为此时string没有被分配空间，不能直接赋值
+-------------
