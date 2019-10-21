@@ -1,0 +1,35 @@
+int maxProfit(vector<int>& prices) {
+4
+        if(prices.size()==0) return 0;
+5
+        int min=prices[0],max=prices[0],flag1=0,flag2=0;
+6
+        int result=0;
+7
+        for(int i=0;i<prices.size();i++){
+8
+            if(max<prices[i]||flag2<flag1){
+9
+                max=prices[i];
+10
+                flag2=i;
+11
+            }
+12
+            if(min>prices[i]){
+13
+                min=prices[i];
+14
+                flag1=i;
+15
+            }
+16
+            if(flag1<=flag2&&result<max-min)
+17
+                result=max-min;
+18
+        }
+19
+        return result;
+20
+    }
