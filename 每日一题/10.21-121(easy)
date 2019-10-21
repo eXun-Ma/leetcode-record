@@ -2,7 +2,7 @@ int maxProfit(vector<int>& prices) {
 4
         if(prices.size()==0) return 0;
 5
-        int min=prices[0],max=prices[0],flag1=0,flag2=0;
+        int min=prices[0],max=prices[0],flag1=0,flag2=0;//flag标记最小和最大的元素下标，在之后的更新中只有当flag2>flag1并且差值大于已有结果才能更新
 6
         int result=0;
 7
@@ -33,3 +33,24 @@ int maxProfit(vector<int>& prices) {
         return result;
 20
     }
+
+
+
+/*参考大神的代码
+动态规划
+根据牛顿莱布尼兹公示，求和可以转化为求差，求差可以转化为求和
+*/
+int maxProfit(vector<int>& prices) {
+    int last = 0, profit = 0;
+    for (int i = 0; i < (int)prices.size() - 1; ++i) {
+        last = max(0, last + prices[i+1] - prices[i]);//last为之前i-1个元素的差 加上最新的差如果不会小于0则更新
+        profit = max(profit, last);//获取最大收益
+    }
+    return profit;
+}
+
+
+
+
+
+
