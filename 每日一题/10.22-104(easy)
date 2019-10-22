@@ -1,0 +1,33 @@
+//用栈进行深度优先遍历
+class Solution {
+public:
+    int maxDepth(TreeNode *root){
+    int deep=0;
+    int maxDeep=0;
+    TreeNode *p=root;
+    stack<pair<TreeNode*,int>> s;
+    while(!s.empty()||p){
+        while(p){//非空进栈向左走
+            s.push(pair<TreeNode *,int>(p,++deep));
+            p=p->left;
+        }
+        p=s.top().first;//空，出栈向右走
+        deep=s.top().second;
+        if(deep>maxDeep)
+            maxDeep=deep;
+        s.pop();
+        p=p->right;
+    }
+    return maxDeep;
+    }
+};
+//递归
+int maxDepth(struct TreeNode* root){
+    if(root==NULL) return 0;
+    int l=maxDepth(root->left)+1;
+    int r=maxDepth(root->right)+1;
+    return l>r?l:r;
+}
+
+
+
