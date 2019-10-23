@@ -1,0 +1,26 @@
+/*
+一开始用了双层for循环一个个遍历，超时。
+参考大佬的代码进行优化：
+如数据 75 71 69 68 77，如果已经知道71需要往后加上2，75与71比较之后直接加3，再去与77比较即可。因此可以从后往前遍历，存储已有的比较结果减少比较次数。
+*/
+
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& T) {
+        vector<int> result(T.size());
+        result[T.size()-1]=0;//最后一个为0
+        for(int i=T.size()-2;i>=0;i--){
+            for(int j=i+1;j<T.size();j+=result[j]){
+                if(T[j]>T[i]){
+                    result[i]=j-i;
+                    break;
+                }
+                else if(result[j]==0){//如果后一个的result也为0，则不需要继续比较了
+                    result[i]=0;
+                    break;
+                }
+            }
+        }
+    return result;
+    }
+};
