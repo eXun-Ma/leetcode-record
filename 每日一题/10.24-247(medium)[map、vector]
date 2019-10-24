@@ -16,8 +16,8 @@ public:
                 M.insert(pair<int,int>(nums[i],1));//插入 pair
         }
         vector<pair<int,int>> vec(M.begin(),M.end());
-        //sort(vec.begin(),vec.end(),cmp);
-        sort(vec.begin(),vec.end(),[](pair<int, int>& x, pair<int, int>& y){return x.second > y.second; });//还没想明白为什么这里用cmp的话会报错
+        //sort(vec.begin(),vec.end(),cmp);//在cmp前面加static的话就可以用
+        sort(vec.begin(),vec.end(),[](pair<int, int>& x, pair<int, int>& y){return x.second > y.second; });
         vector<int> result;
         for(int i=0;i<k;i++)
             result.push_back(vec[i].first);//往vector中添加元素
