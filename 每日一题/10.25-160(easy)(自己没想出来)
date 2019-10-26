@@ -1,3 +1,10 @@
+/*
+参考大神的思路：
+双指针法
+1.pA指向headA，pB指向headB，同时向后移动指针，先到达末尾的指针再定位到另一个链表头（如：pA先到末尾，将pA指向headB）
+2.分别改变一次指针的指向，如果pA、pB指向同一个节点，则到达两个链表相交的地方；如果还是没找到，则两个链表不相交
+【注】改变一次指针指向之后，两个指针到达相同节点所经过的节点数逼相同，必同时到达相同节点
+*/
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
