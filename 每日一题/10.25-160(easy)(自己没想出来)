@@ -10,7 +10,7 @@ public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode *pA=headA, *pB=headB;
         if(pA==NULL||pB==NULL) return NULL;
-        int flagA=1,flagB=1;
+        int flagA=1,flagB=1;//加上flag指示是否已经改变过指针指向
         while(pA!=pB){
             if(pA->next)
                 pA=pA->next;
@@ -18,7 +18,7 @@ public:
                 pA=headB;
                 flagA=0;
             }
-            else{
+            else{//已经改变过指向并且这次遍历已经到达链表末尾，则将pA指向null作为返回值
                 pA=NULL;
                 break;
             }
