@@ -13,7 +13,7 @@ public:
         if(!head||!head->next) return NULL;
         ListNode *fast=head->next->next,*slow=head->next;
         while(fast!=slow){
-            if(fast==NULL||fast->next==NULL)
+            if(fast==NULL||fast->next==NULL)//一定要先判断是否为NULL
                 return NULL;
             fast=fast->next->next;
             slow=slow->next;
