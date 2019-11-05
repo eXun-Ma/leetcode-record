@@ -1,0 +1,36 @@
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        if(head==NULL||head->next==NULL) return true;
+        int length=0;
+        ListNode* p=head,*pre, *post;
+        while(p){//得到链表长度
+            length++;
+            p=p->next;
+        }
+        int i=1;
+        p=head;
+        pre=p;//指向当前节点的前一个结点
+        p=p->next;
+        head->next=NULL;
+        while(i<length/2){//将前半段链表反转
+            post=p->next;
+            p->next=pre;
+            pre=p;
+            p=post;
+            i++;
+        }
+        if(length%2==1)//如果是奇数个，最中间的一个跳过
+            p=p->next;
+        while(pre&&p){
+            if(pre->val!=p->val)
+                return false;
+            pre=pre->next;
+            p=p->next;
+        }
+        return true;
+    }
+};
+/***
+看了大神的代码，还可以设置快慢指针，快指针一次走2步，慢指针一次走1步，快指针到达链表末尾的时候慢指针刚好到中间。
+***/
